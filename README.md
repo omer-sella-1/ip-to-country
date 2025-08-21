@@ -57,7 +57,7 @@ The service will start on the configured port (default: 8080).
 
 **Example:**
 ```bash
-curl "http://localhost:5000/v1/find-country?ip=2.22.233.255"
+curl "http://localhost:8080/v1/find-country?ip=2.22.233.255"
 ```
 
 **Response:**
