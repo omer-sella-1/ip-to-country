@@ -1,0 +1,4 @@
+start_ip,end_ip,country,city
+1.0.0.0,1.255.255.255,Australia,Sydney
+2.0.0.0,2.255.255.255,France,Paris
+8.8.8.0,8.8.8.255,United States,Mountain View

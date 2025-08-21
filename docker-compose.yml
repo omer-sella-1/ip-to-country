@@ -1,0 +1,20 @@
+
+services:
+  ip-geolocation:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - RATE_LIMIT_PER_SECOND=5
+      - IP_DATABASE_TYPE=csv
+      - IP_DATABASE_FILE=data/ip_database.csv
+    volumes:
+      - ./data:/app/data  # Mount data directory with write access
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
