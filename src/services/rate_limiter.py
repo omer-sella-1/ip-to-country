@@ -1,6 +1,7 @@
 import time
 from threading import Lock
 
+from src.config import Config
 
 class RateLimiter:
     def __init__(self):
@@ -36,6 +37,8 @@ class RateLimiter:
         bucket["last_refill"] = current_time
 
     def is_allowed(self, client_ip, rate_limit):
+        if len(self.buckets) > 1000:
+            self.cleanup_old_buckets(Config.BUCKET_CLEANUP_AGE)
         bucket = self._get_or_create_bucket(client_ip, rate_limit)
         with bucket["lock"]:
             self._refill_bucket(bucket)
@@ -46,7 +49,7 @@ class RateLimiter:
             else:
                 return False
 
-    def cleanup_old_buckets(self, max_age=3600):
+    def cleanup_old_buckets(self, max_age):
         current_time = time.time()
         with self.lock:
             expired_keys = [
