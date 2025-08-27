@@ -1,6 +1,9 @@
 from src.app import create_app
 from src.config import Config
+from src.logging_config import setup_logging
 from src.startup import bootstrap_application
+
+setup_logging()
 
 bootstrap_application()
 

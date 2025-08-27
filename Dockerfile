@@ -22,8 +22,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Create data directory and set permissions
-RUN mkdir -p data && \
+# Create data and logs directories and set permissions
+RUN mkdir -p data logs && \
     chmod -R 755 /app
 
 # Expose port
