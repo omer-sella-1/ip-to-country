@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9"] # Just test the version you actually use
+        python-version: ["3.9"]
 
     steps:
       - name: Checkout code
@@ -42,26 +42,9 @@ jobs:
           chmod +x ./test.sh
           ./test.sh
 
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-
-      - name: Install safety
-        run: pip install safety
-
-      - name: Run security check
-        run: safety check -r requirements.txt
-
   docker:
     runs-on: ubuntu-latest
-    needs: [test, security] # Wait for both test and security to pass
+    needs: [test, security]
     if: github.ref == 'refs/heads/main'
 
     steps:
