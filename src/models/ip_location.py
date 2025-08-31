@@ -22,7 +22,8 @@ class IPLocation(Base):
     country = Column(String(100), nullable=False)
     city = Column(String(100), nullable=False)
 
-    # __table_args__ allows for additional table arguments, like indexes and other constraints
+    # __table_args__ allows for additional table arguments, like indexes
+    # and other constraints
     __table_args__ = (Index("idx_ip_range", "start_ip_int", "end_ip_int"),)
 
     # static method to convert an IP address string to its integer representation

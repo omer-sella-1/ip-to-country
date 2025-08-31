@@ -11,3 +11,4 @@ class Config:
     IP_DATABASE_TYPE = os.getenv("IP_DATABASE_TYPE", "csv")
     IP_DATABASE_FILE = os.getenv("IP_DATABASE_FILE", "data/ip_database.csv")
     BUCKET_CLEANUP_AGE = int(os.getenv("BUCKET_CLEANUP_AGE", 3600))
+    MAX_BUCKETS = int(os.getenv("MAX_BUCKETS", 1000))

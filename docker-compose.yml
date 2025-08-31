@@ -9,6 +9,8 @@ services:
       - RATE_LIMIT_PER_SECOND=5
       - IP_DATABASE_TYPE=csv
       - IP_DATABASE_FILE=data/ip_database.csv
+      - BUCKET_CLEANUP_AGE=3600
+      - MAX_BUCKETS=1000
     volumes:
       - ./data:/app/data  # Mount data directory with write access
     restart: unless-stopped

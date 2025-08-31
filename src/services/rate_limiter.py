@@ -3,6 +3,7 @@ from threading import Lock
 
 from src.config import Config
 
+
 class RateLimiter:
     def __init__(self):
         self.buckets = {}
@@ -37,7 +38,7 @@ class RateLimiter:
         bucket["last_refill"] = current_time
 
     def is_allowed(self, client_ip, rate_limit):
-        if len(self.buckets) > 1000:
+        if len(self.buckets) > Config.MAX_BUCKETS:
             self.cleanup_old_buckets(Config.BUCKET_CLEANUP_AGE)
         bucket = self._get_or_create_bucket(client_ip, rate_limit)
         with bucket["lock"]:
